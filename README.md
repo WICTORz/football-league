@@ -1,6 +1,6 @@
 # football-league
 SATIT GLORY League powered by WICTORz
-[index.html](https://github.com/user-attachments/files/33625285/index.html)
+[index.html](https://github.com/user-attachments/files/33628725/index.html)
 <!doctype html>
 <html lang="th">
 <head>
@@ -80,72 +80,122 @@ th{background:#1a2940}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 
 
-/* Smartphone-first public/admin experience */
+/* Mobile-first public/admin experience */
+:root{--sg-purple:#a78bfa;--sg-soft:#f7f7fb}
+body{padding-bottom:env(safe-area-inset-bottom)}
+.header-brandline{display:flex;align-items:center;gap:12px}
+.league-logo{width:68px;height:68px;object-fit:contain;flex:0 0 auto;border-radius:14px;background:#fff;padding:5px}
+.rolebar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.rolebar .pill{font-size:10px}
+.public-only{display:block}.admin-only{display:none!important}
+body.admin-mode .admin-only{display:block!important}
+body.admin-mode .admin-inline{display:inline-flex!important}
+body.admin-mode .public-only{display:none!important}
+body.admin-mode .admin-hide{display:none!important}
+body:not(.admin-mode) #module-finance>*,body:not(.admin-mode) #module-players,body:not(.admin-mode) #module-stats .admin-stats-entry,
+body:not(.admin-mode) #weeklyTabs [data-tab="nominees"],body:not(.admin-mode) #weeklyTabs [data-tab="normal"],
+body:not(.admin-mode) #nominees,body:not(.admin-mode) #normal{display:none!important}
+body:not(.admin-mode) #weeklyTabs{display:flex!important}
+body:not(.admin-mode) #weeklyTabs [data-tab="rules"]{display:inline-flex!important}
+body:not(.admin-mode) #module-fixtures .actions{display:none!important}
+body:not(.admin-mode) #module-fixtures input[data-fixture]{display:none!important}
+body:not(.admin-mode) #module-fixtures .fixture-extra{display:none!important}
+body:not(.admin-mode) #module-fixtures .grid3{display:none!important}
+.public-match-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.public-match{border:1px solid var(--line);border-radius:13px;padding:12px;background:#101827;min-width:0}
+.public-match .match-meta{font-size:11px;color:var(--muted);margin-bottom:8px}
+.public-match .match-teams{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:7px;align-items:center;text-align:center}
+.public-match .team-label{font-size:12px;font-weight:750;overflow-wrap:anywhere}
+.public-match .team-label img{display:block;width:32px;height:32px;object-fit:contain;margin:0 auto 5px;background:#fff;border-radius:8px;padding:2px}
+.public-match .score-num{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:8px;background:#fff;color:#111827;font-size:22px;font-weight:950}
+.public-match .score-num.behind{background:#ef4444;color:#fff}
+.public-match .score-num.level{background:#dbeafe;color:#111827}
+.public-match .score-num.ahead{background:#c4b5fd;color:#211447}
+.public-match .match-events{font-size:11px;color:#cbd5e1;margin-top:8px;line-height:1.5}
+.countdown{font-variant-numeric:tabular-nums;font-weight:900;color:#c4b5fd}
+.sg-form-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.sg-card{background:linear-gradient(145deg,#151f32,#0d1421);border:1px solid var(--line);border-radius:15px;padding:16px;min-width:0}
+.sg-card h3{font-size:16px;margin-bottom:10px}
+.sg-card textarea,.sg-card input,.sg-card select{width:100%;border:1px solid #34435e;border-radius:10px;background:#0b1220;color:var(--text);padding:11px;font:inherit;margin:4px 0 9px}
+.sg-card textarea{min-height:90px}
+.sg-vote-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.sg-vote-options label{display:flex;gap:4px;align-items:center;justify-content:center;border:1px solid #34435e;background:#0b1220;padding:8px 3px;border-radius:9px;font-size:12px}
+.sg-vote-options input{width:auto;margin:0;accent-color:var(--gold)}
+.sg-vote-bar{display:flex;align-items:center;gap:8px;margin:7px 0;font-size:12px}
+.sg-vote-bar span:first-child{width:90px;flex:0 0 auto}
+.sg-vote-bar .bar{height:9px;background:#25334a;border-radius:99px;overflow:hidden;flex:1}
+.sg-vote-bar .bar i{display:block;height:100%;background:linear-gradient(90deg,#8b5cf6,#c4b5fd)}
+.sg-payment-image{display:block;width:min(100%,480px);max-height:250px;object-fit:contain;margin:12px auto;border-radius:12px;background:#fff;padding:8px}
+.sg-payment-cta{display:block;text-align:center;text-decoration:none;background:linear-gradient(90deg,#e9bd62,#c4b5fd);color:#111827;font-weight:900;padding:13px 16px;border-radius:12px}
+.sg-payment-grid{display:grid;grid-template-columns:repeat(11,minmax(54px,1fr));gap:4px;overflow-x:auto;padding-bottom:6px}
+.sg-payment-cell{min-width:54px;text-align:center;border-radius:7px;padding:8px 3px;font-size:10px;font-weight:800;color:#101827}
+.sg-payment-cell.paid{background:#6fd6a0}.sg-payment-cell.unpaid{background:#ff858f}.sg-payment-cell.unknown{background:#fff;color:#64748b}
+.sg-payment-row{display:grid;grid-template-columns:90px minmax(0,1fr);gap:8px;align-items:center;margin:8px 0}
+.sg-payment-row b{font-size:12px}
+.sg-messages{display:grid;gap:8px}
+.sg-message{border:1px solid var(--line);background:#0b1220;border-radius:10px;padding:11px}
+.sg-message small{color:var(--muted)}
+.sg-public-scorers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.sg-public-scorer{display:flex;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:9px;padding:9px;font-size:12px}
+.sg-public-scorer b{color:var(--gold)}
+.sg-footer-sponsor{text-align:center;font-size:11px;line-height:1.8;color:#aab6ca;margin-top:26px;padding:16px 8px;border-top:1px solid var(--line)}
+.sg-footer-sponsor strong{color:var(--gold)}
+#module-fixtures .admin-only{margin-top:12px}
 @media(max-width:700px){
- body{font-size:15px} header{padding:14px 12px} main{margin:10px auto;padding:0 10px 90px}
- h1{font-size:22px;line-height:1.2} h2{font-size:18px} .sub{font-size:12px}
- .headrow{align-items:flex-start}.headrow>.actions{width:100%}
- .headrow>.actions button{flex:1 1 42%;min-height:44px}
- .platform-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:8px}
- .platform-nav .tab{min-height:44px;padding:10px 7px;font-size:12px;white-space:normal}
- .panel{padding:13px;border-radius:13px}.field input,.field select,.field textarea,button,.tab{font-size:16px}
- button,.tab{min-height:44px;padding:11px 13px}
- .actions{gap:7px}.actions button{flex:1 1 auto}
- .tablewrap{border-radius:8px}.tablewrap table{font-size:12px}
- .hero{min-height:0;padding:14px}.hero-badge{width:62px;height:62px;min-width:62px;font-size:10px}
- .scorebox{grid-template-columns:repeat(2,minmax(0,1fr))}
- .checkgrid{grid-template-columns:1fr}
- .public-form-grid{grid-template-columns:1fr!important}
- .vote-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
- .vote-options label{padding:10px 5px;text-align:center;min-height:42px}
- .mobile-bottom-label{font-size:10px}
+ header{padding:12px;position:static}
+ .header-brandline{align-items:flex-start}
+ .league-logo{width:54px;height:54px}
+ h1{font-size:22px}
+ main{padding:0 10px 40px;margin:12px auto}
+ .platform-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:7px}
+ .platform-nav .tab{font-size:11px;padding:10px 7px;min-height:42px}
+ .panel{padding:12px;border-radius:13px}
+ .hero{min-height:unset;gap:10px}
+ .hero-badge{display:none}
+ .public-match-list,.sg-form-grid{grid-template-columns:1fr}
+ .public-match .score-num{width:40px;height:40px;font-size:21px}
+ .sg-vote-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .sg-payment-row{grid-template-columns:64px minmax(0,1fr)}
+ .sg-public-scorers{grid-template-columns:1fr}
+ .tablewrap table,.tablewrap .table{min-width:720px}
+ .actions button,.actions input{flex:1 1 auto}
+ .rolebar button{flex:1}
 }
-.admin-only{display:none!important}body.admin-mode .admin-only{display:initial!important}
-body.admin-mode .admin-only.panel,body.admin-mode .admin-only.section,body.admin-mode .admin-only.actions{display:block!important}
-body.admin-mode .admin-only.actions{display:flex!important}
-body:not(.admin-mode) .admin-edit-control{display:none!important}
-#accessBar{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap;margin-top:12px}
-#accessBar input{width:min(180px,48vw);padding:9px;border:1px solid var(--line);border-radius:9px;background:#0b1220;color:var(--text)}
-#publicHub .field textarea{min-height:100px}
-.public-card{background:linear-gradient(145deg,#141e30,#0c1422);border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0}
-.vote-options label{display:flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:9px;background:#0b1220;padding:8px;font-size:13px}
-.vote-options input{accent-color:var(--gold)}
-.message-item{border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;background:#0b1220;overflow-wrap:anywhere}
-.live-dot{color:#ff5b66;animation:blink 1s infinite}@keyframes blink{50%{opacity:.25}}
+@media(max-width:390px){.platform-nav{grid-template-columns:1fr 1fr}.sg-vote-options{grid-template-columns:repeat(2,minmax(0,1fr))}.league-logo{width:46px;height:46px}}
 
-
-body:not(.admin-mode) .platform-module .actions,
-body:not(.admin-mode) #module-standings .panel:nth-child(2),
-body:not(.admin-mode) #module-stats .panel:nth-child(2),
-body:not(.admin-mode) #module-finance .panel,
-body:not(.admin-mode) #module-fixtures .panel:nth-child(2){display:none!important}
-body:not(.admin-mode) #module-fixtures input,
-body:not(.admin-mode) #module-fixtures select,
-body:not(.admin-mode) #module-standings input,
-body:not(.admin-mode) #module-standings select,
-body:not(.admin-mode) #module-stats input,
-body:not(.admin-mode) #module-stats select{pointer-events:none;opacity:.9}
 </style>
 </head>
 <body>
-<header><div class="headrow"><div><div class="brand"><span style="color:var(--green)">●</span> WICTORz × SATIT GLORY · OFFICIAL LEAGUE PLATFORM</div><h1>SATIT GLORY LEAGUE <span style="color:var(--gold)">2026</span></h1><div class="sub">SEASON 2 · Powered by WICTORz · League Management & Weekly Fantasy Points</div><div style="margin-top:10px;display:flex;gap:7px;flex-wrap:wrap"><span class="pill">● LOCAL DATABASE</span><span class="pill">LIVE SCORE CALCULATION</span><span class="pill">JSON BACKUP / RESTORE</span></div></div><div class="actions admin-only" style="margin:0"><button onclick="exportJSON()">สำรองข้อมูล JSON</button><button onclick="document.getElementById('importFile').click()">นำเข้าข้อมูล</button><input id="importFile" type="file" accept=".json,application/json" class="hidden" onchange="importJSON(event)"><button onclick="window.print()">Print / Save PDF</button></div>
-<div id="accessBar"><span id="accessStatus" class="pill">PUBLIC VIEW</span><input id="adminKeyInput" type="password" inputmode="numeric" placeholder="ADMIN Keypass" aria-label="ADMIN Keypass"><button id="adminLoginBtn" class="primary" type="button">Log In ADMIN</button><button id="adminLogoutBtn" type="button" class="hidden">ออกจากระบบ</button></div></div></header>
+<header><div class="headrow"><div class="header-brandline"><img class="league-logo" src="https://i.postimg.cc/xJ62XCzQ/logo-saatit.png" alt="SATIT GLORY League logo"><div><div class="brand"><span style="color:var(--green)">●</span> WICTORz × SATIT GLORY · OFFICIAL LEAGUE PLATFORM</div><h1>SATIT GLORY LEAGUE <span style="color:var(--gold)">2026</span></h1><div class="sub">SEASON 2 · Powered by WICTORz · Live Score &amp; Weekly Fantasy Points</div><div class="rolebar"><span class="pill" id="viewModeLabel">PUBLIC VIEW</span><button type="button" id="adminToggle">เข้าสู่โหมด ADMIN</button><button type="button" id="publicToggle" class="hidden">กลับสู่ PUBLIC VIEW</button></div></div></div><div class="actions admin-only" style="margin:0"><button onclick="exportJSON()">สำรองข้อมูล JSON</button><button onclick="document.getElementById('importFile').click()">นำเข้าข้อมูล</button><input id="importFile" type="file" accept=".json,application/json" class="hidden" onchange="importJSON(event)"><button onclick="window.print()">Print / Save PDF</button></div></div></header>
 <main>
 <div class="platform-nav" id="platformTabs">
-<button class="tab active" data-module="dashboard">ภาพรวมลีก</button><button class="tab" data-module="fixtures">โปรแกรม & ผลการแข่งขัน</button><button class="tab" data-module="standings">ตารางคะแนนแบบเรียลไทม์ (Standing)</button><button class="tab" data-module="stats">ดาวซัลโว & แอสซิสต์</button><button class="tab admin-only" data-module="players">ทะเบียนนักเตะ</button><button class="tab" data-module="discipline">ใบเหลือง/ใบแดง</button><button class="tab" data-module="finance">การเงิน & ค่าสนาม</button><button class="tab" data-module="weeklypoints">WICTORz Weekly Points</button>
+<button class="tab active" data-module="dashboard">ภาพรวมลีก</button><button class="tab" data-module="fixtures">โปรแกรม &amp; ผลการแข่งขัน</button><button class="tab" data-module="standings">ตารางคะแนนแบบเรียลไทม์ (Standing)</button><button class="tab" data-module="stats">ดาวซัลโว &amp; แอสซิสต์</button><button class="tab admin-only" data-module="players">ทะเบียนนักเตะ</button><button class="tab" data-module="discipline">ใบเหลือง/ใบแดง</button><button class="tab" data-module="finance">การเงิน &amp; ค่าสนาม</button><button class="tab" data-module="weeklypoints">WICTORz Weekly Points</button>
 </div>
+<section id="sgPublicSchedule" class="panel public-only"><div class="section-title"><h2>โปรแกรมสัปดาห์ที่กำลังจะมาถึง</h2><span class="pill">Kick-off ทุกวันอาทิตย์ · 18:34 น.</span></div><p class="sub">นับถอยหลังอิงเวลาจริงก่อนเริ่มแข่งขัน · สกอร์และผู้ทำประตูจะแสดงเมื่อมีการบันทึกข้อมูล</p><div id="sgCountdown" class="countdown">กำลังคำนวณเวลานับถอยหลัง…</div><div id="sgUpcoming" class="public-match-list" style="margin-top:12px"></div></section>
+<section id="sgPastResults" class="panel public-only"><h2>ผลการแข่งขันสัปดาห์ที่ผ่านมา</h2><div id="sgPast" class="public-match-list"></div></section>
+<section id="sgPublicScorersPanel" class="panel public-only"><h2>ดาวซัลโวลีก · รายบุคคล</h2><div id="sgPublicScorers" class="sg-public-scorers"></div></section>
+<section id="sgPublicPayments" class="panel public-only"><h2>ค่าสนามรายสัปดาห์</h2><p class="sub">สีเขียว = จ่ายแล้ว · สีแดง = ยังไม่จ่าย · สีขาว = ยังไม่ทราบสถานะ</p><div id="sgPaymentMatrix"></div></section>
+<section id="sgCommunity" class="panel public-only"><h2>แจ้ง-ติดต่อผู้จัด &amp; จ่ายค่าแมตช์</h2><div class="sg-form-grid">
+<div class="sg-card"><h3>ขอสิทธิ์เลื่อนเวลาแข่งขัน</h3><p class="small">โปรดระบุชื่อทีม พร้อมเบอร์โทรติดต่อกลับ</p><p class="small">* ไม่สามารถเลื่อนวันได้ แต่เลื่อนเวลาให้ช้า/เร็วได้ คู่แรก–คู่สุดท้าย แต่ละทีมได้สิทธิ์ 2/2 ครั้ง</p><form id="sgRescheduleForm"><input name="team" required placeholder="ชื่อทีม"><input name="phone" required inputmode="tel" placeholder="เบอร์โทรติดต่อกลับ"><input name="match" placeholder="คู่แข่งขัน / สัปดาห์"><textarea name="detail" required placeholder="ระบุเวลาที่ต้องการและเหตุผล"></textarea><button class="primary" type="submit">ส่งคำขอเลื่อนเวลา</button></form></div>
+<div class="sg-card"><h3>แจ้งผู้จัด / รายงานแมตช์</h3><p class="small">แจ้งแก้ไขผู้ทำประตู ส่งรายชื่อ หรือแจ้งข้อมูลแมตช์</p><form id="sgReportForm"><input name="team" required placeholder="ชื่อทีม"><input name="contact" placeholder="ชื่อผู้ติดต่อ / เบอร์โทร"><input name="match" placeholder="คู่แข่งขัน / สัปดาห์"><textarea name="detail" required placeholder="รายละเอียดที่ต้องการแจ้งผู้จัด"></textarea><button class="primary" type="submit">ส่งรายงานถึงผู้จัด</button></form></div>
+<div class="sg-card"><h3>Democracy VOTE · ประเมินผู้ตัดสิน</h3><p class="small">โหวตได้หนึ่งครั้งต่ออุปกรณ์/เบราว์เซอร์ คะแนนจะแสดงเป็นค่าเฉลี่ยรวมหลังโหวต</p><form id="sgRefVoteForm"><label class="small">ผู้ตัดสินคนแรก · คนตัวเล็กกว่า (มุมใกล้)</label><div id="sgVoteOne" class="sg-vote-options"></div><label class="small">ผู้ตัดสินคนที่สอง · คนตัวสูงกว่า (มุมไกล)</label><div id="sgVoteTwo" class="sg-vote-options"></div><button class="primary" type="submit">ยืนยันคะแนนโหวต</button></form><div id="sgVoteResults" style="margin-top:12px"></div></div>
+<div class="sg-card"><h3>Democracy VOTE · แสดงความคิดเห็น / เรียกร้อง</h3><form id="sgSuggestionForm"><input name="topic" placeholder="หัวข้อ เช่น ราคา / ค่าแมตช์ / เงินรางวัล" required><textarea name="detail" placeholder="ข้อเสนอแนะหรือเรื่องที่อยากให้ปรับปรุง" required></textarea><input name="contact" placeholder="ชื่อหรือช่องทางติดต่อ (ไม่บังคับ)"><button class="primary" type="submit">ส่งความคิดเห็น</button></form></div></div></section>
+<section id="sgAdminInbox" class="panel admin-only"><h2>กล่องข้อความจาก Public View</h2><p class="sub">ADMIN อ่านและลบข้อความได้เท่านั้น ไม่สามารถแก้ไขข้อความหรือโหวตแทนผู้ใช้ได้</p><div id="sgInbox" class="sg-messages"></div></section>
+<section id="sgPaymentInfo" class="panel"><h2 style="text-align:center">ชำระค่าแข่งขัน</h2><img class="sg-payment-image" src="https://i.postimg.cc/jwdhQ5GC/csdcsdfsfwefwefsdfsfsdf.png" alt="ข้อมูลการชำระค่าแข่งขัน"><p class="sub" style="text-align:center">โอนแล้วโปรดส่งสลิปให้ผู้จัดผ่านแบบฟอร์มด้านล่าง</p><a class="sg-payment-cta" href="https://docs.google.com/forms/d/1ML87ZVozHhVZ4ohhrvq3ljdneEw7ZF2MIwgz0ukqTMc/edit" target="_blank" rel="noopener">ส่งสลิป / แจ้งการโอนเงิน →</a></section>
+<footer class="sg-footer-sponsor">Sponsored by <strong>[MONER]</strong> สปอร์ตแอนด์ดีไซน์ · มอบส่วนลด 15% ทั้งเสื้อหรือชุด · สั่งทำเสื้อเริ่มต้น 250 บาท<br><strong>[PISANU Sport&amp;Bar]</strong> · <strong>[ONANA ParteyBall League]</strong> กลุ่มโอนาน่าพาเตะบอล สนใจเตะบอลสนามสาธิต โทร 093-3951128<br>Copyright © วิคเตอร์ · ติดต่อผู้จัด โทร 082-6924980</footer>
+
 <section id="module-dashboard" class="platform-module">
 <div class="hero panel"><div><div class="brand">THE OFFICIAL SEASON HUB</div><h2 style="font-size:clamp(25px,4vw,42px);margin:8px 0">ONE LEAGUE. ONE GLORY.</h2><p class="sub">ศูนย์กลางจัดการ SATIT GLORY League 2026 Season 2 ครบทั้งโปรแกรม ตารางคะแนน สถิติ วินัย และการเงิน</p><p class="sub" style="color:var(--green)">นำเข้าข้อมูลจาก LINE UP 3.docx แล้ว: ผลการแข่งขัน MW1–MW6, โปรแกรม MW7–MW11 และรายชื่อนักเตะที่อ่านข้อความได้</p></div><span class="hero-badge">SEASON 02</span></div><div id="dashboardCards" class="grid"></div>
-<div class="grid2"><div class="panel"><div class="section-title"><h2>ตารางคะแนน 5 อันดับแรก</h2><button onclick="switchModule('standings')">ดูตารางเต็ม →</button></div><div id="dashStandings"></div></div><div class="panel"><div class="section-title"><h2>แมตช์ที่ยังไม่ลงผล</h2><button onclick="switchModule('fixtures')">จัดการโปรแกรม →</button></div><div id="dashFixtures"></div></div></div><div class="panel"><h2>สถานะข้อมูลระบบ</h2><div id="systemStatus" class="mutedbox"></div></div></section>
-<section id="module-fixtures" class="platform-module hidden"><div class="panel"><div class="section-title"><h2>โปรแกรม & ผลการแข่งขัน</h2><span class="pill">12 ทีม · 11 สัปดาห์ · 66 นัด</span></div><div class="grid3"><div class="field"><label>เลือกสัปดาห์</label><select id="fixtureWeek"></select></div><div class="field"><label>ค้นหาทีม</label><input id="fixtureSearch" placeholder="พิมพ์ชื่อทีม..."></div><div class="field"><label>ตัวกรอง</label><select id="fixtureFilter"><option value="all">ทุกสถานะ</option><option value="played">ลงผลแล้ว</option><option value="pending">ยังไม่ลงผล</option></select></div></div><div class="actions"><button class="primary" onclick="saveFixtureResults()">บันทึกผลการแข่งขัน</button><button onclick="clearWeekResults()">ล้างผลสัปดาห์นี้</button><button onclick="window.print()">พิมพ์โปรแกรม</button></div><div id="fixtureList" class="tablewrap" style="margin-top:14px"></div></div><div class="panel"><h2>จัดการโปรแกรมแข่งขัน</h2><p class="sub">โปรแกรมตั้งต้นสร้างแบบพบกันหมด 11 สัปดาห์ สามารถสร้างใหม่ได้ แต่การสร้างใหม่จะล้างผลที่บันทึกไว้</p><div class="actions"><button onclick="regenerateFixtures()">สร้างโปรแกรมพบกันหมดใหม่</button></div></div></section>
-<section id="module-standings" class="platform-module hidden"><div class="panel"><div class="section-title"><h2>LEAGUE TABLE</h2><span class="pill">ชนะ 3 · เสมอ 1 · แพ้ 0</span></div><div class="mutedbox">เรียงตามคะแนน → ผลต่างประตู → ประตูได้ · ฟอร์ม 5 นัดล่าสุดแสดง W/D/L และลูกศรเทียบอันดับปัจจุบันกับอันดับก่อนหน้าเมื่อมีข้อมูล</div><div id="standingsTable" class="tablewrap" style="margin-top:14px"></div></div><div class="panel"><h2>ตั้งค่าทีมในลีก</h2><p class="sub">แก้ชื่อทีมได้ ระบบจะเก็บข้อมูลและโปรแกรมที่อ้างอิงทีมตามรหัสทีม</p><div id="teamEditor" class="grid3"></div><div class="actions"><button class="primary" onclick="saveTeamNames()">บันทึกชื่อทีม</button></div></div></section>
-<section id="module-stats" class="platform-module hidden"><div class="grid2"><div class="panel"><h2>GOLDEN BOOT · ดาวซัลโว</h2><div id="scorersTable"></div></div><div class="panel"><h2>PLAYMAKER · แอสซิสต์</h2><div id="assistsTable"></div></div></div><div class="panel"><h2>เพิ่มสถิติผู้เล่นจากแมตช์</h2><div class="grid"><div class="field"><label>สัปดาห์</label><select id="statWeek"></select></div><div class="field"><label>ทีม</label><select id="statTeam"></select></div><div class="field"><label>ชื่อผู้เล่น</label><input id="statPlayer" placeholder="ชื่อผู้เล่น"></div><div class="field"><label>คู่แข่ง</label><input id="statOpponent" placeholder="ชื่อทีมคู่แข่ง" readonly></div><div class="field"><label>ประตู (G)</label><input id="statGoals" type="number" min="0" step="1" value="0"></div><div class="field"><label>แอสซิสต์ (A)</label><input id="statAssists" type="number" min="0" step="1" value="0"></div><div class="field"><label>ใบเหลือง</label><input id="statYellow" type="number" min="0" step="1" value="0"></div><div class="field"><label>ใบแดง</label><input id="statRed" type="number" min="0" step="1" value="0"></div></div><div class="actions"><button class="primary" onclick="addPlayerStat()">บันทึกสถิติผู้เล่น</button></div><div id="playerStatsTable" style="margin-top:14px"></div></div></section>
+<div class="grid2"><div class="panel"><div class="section-title"><h2>ตารางคะแนน 5 อันดับแรก</h2><button onclick="switchModule('standings')">ดูตารางเต็ม →</button></div><div id="dashStandings"></div></div><div class="panel"><div class="section-title"><h2>แมตช์ที่ยังไม่ลงผล</h2><button onclick="switchModule('fixtures')">ดูโปรแกรม →</button></div><div id="dashFixtures"></div></div></div><div class="panel admin-only"><h2>สถานะข้อมูลระบบ</h2><div id="systemStatus" class="mutedbox"></div></div></section>
+<section id="module-fixtures" class="platform-module hidden"><div class="panel"><div class="section-title"><h2>โปรแกรม & ผลการแข่งขัน</h2><span class="pill">12 ทีม · 11 สัปดาห์ · 66 นัด</span></div><div class="grid3"><div class="field"><label>เลือกสัปดาห์</label><select id="fixtureWeek"></select></div><div class="field"><label>ค้นหาทีม</label><input id="fixtureSearch" placeholder="พิมพ์ชื่อทีม..."></div><div class="field"><label>ตัวกรอง</label><select id="fixtureFilter"><option value="all">ทุกสถานะ</option><option value="played">ลงผลแล้ว</option><option value="pending">ยังไม่ลงผล</option></select></div></div><div class="actions"><button class="primary" onclick="saveFixtureResults()">บันทึกผลการแข่งขัน</button><button onclick="clearWeekResults()">ล้างผลสัปดาห์นี้</button><button onclick="window.print()">พิมพ์โปรแกรม</button></div><div id="fixtureList" class="tablewrap" style="margin-top:14px"></div></div><div class="panel admin-only"><h2>ตั้งโปรแกรมแข่งขันใหม่</h2><p class="sub">โปรแกรมตั้งต้นสร้างแบบพบกันหมด 11 สัปดาห์ สามารถสร้างใหม่ได้ แต่การสร้างใหม่จะล้างผลที่บันทึกไว้</p><div class="actions"><button onclick="regenerateFixtures()">สร้างโปรแกรมพบกันหมดใหม่</button></div></div></section>
+<section id="module-standings" class="platform-module hidden"><div class="panel"><div class="section-title"><h2>LEAGUE TABLE</h2><span class="pill">ชนะ 3 · เสมอ 1 · แพ้ 0</span></div><div class="mutedbox">เรียงตามคะแนน → ผลต่างประตู → ประตูได้ · ฟอร์ม 5 นัดล่าสุดแสดง W/D/L และลูกศรเทียบอันดับปัจจุบันกับอันดับก่อนหน้าเมื่อมีข้อมูล</div><div id="standingsTable" class="tablewrap" style="margin-top:14px"></div></div><div class="panel admin-only"><h2>ตั้งค่าทีมในลีก</h2><p class="sub">แก้ชื่อทีมได้ ระบบจะเก็บข้อมูลและโปรแกรมที่อ้างอิงทีมตามรหัสทีม</p><div id="teamEditor" class="grid3"></div><div class="actions"><button class="primary" onclick="saveTeamNames()">บันทึกชื่อทีม</button></div></div></section>
+<section id="module-stats" class="platform-module hidden"><div class="grid2"><div class="panel"><h2>GOLDEN BOOT · ดาวซัลโว</h2><div id="scorersTable"></div></div><div class="panel"><h2>PLAYMAKER · แอสซิสต์</h2><div id="assistsTable"></div></div></div><div class="panel admin-only admin-stats-entry"><h2>เพิ่มสถิติผู้เล่นจากแมตช์</h2><div class="grid"><div class="field"><label>สัปดาห์</label><select id="statWeek"></select></div><div class="field"><label>ทีม</label><select id="statTeam"></select></div><div class="field"><label>ชื่อผู้เล่น</label><input id="statPlayer" placeholder="ชื่อผู้เล่น"></div><div class="field"><label>คู่แข่ง</label><input id="statOpponent" placeholder="ชื่อทีมคู่แข่ง" readonly></div><div class="field"><label>ประตู (G)</label><input id="statGoals" type="number" min="0" step="1" value="0"></div><div class="field"><label>แอสซิสต์ (A)</label><input id="statAssists" type="number" min="0" step="1" value="0"></div><div class="field"><label>ใบเหลือง</label><input id="statYellow" type="number" min="0" step="1" value="0"></div><div class="field"><label>ใบแดง</label><input id="statRed" type="number" min="0" step="1" value="0"></div></div><div class="actions"><button class="primary" onclick="addPlayerStat()">บันทึกสถิติผู้เล่น</button></div><div id="playerStatsTable" style="margin-top:14px"></div></div></section>
 <section id="module-players" class="platform-module hidden"><div class="panel"><div class="section-title"><h2>ทะเบียนนักเตะ</h2><span class="pill">Player Registry</span></div><div class="grid3"><div class="field"><label>ชื่อผู้เล่น</label><input id="newPlayerName" placeholder="ชื่อ-นามสกุล"></div><div class="field"><label>ทีม</label><select id="newPlayerTeam"></select></div><div class="field"><label>ตำแหน่ง</label><select id="newPlayerPosition"><option>ผู้รักษาประตู</option><option>กองหลัง</option><option>ริมเส้น</option><option>กองกลาง</option><option>กองหน้า</option><option>ไม่ระบุ</option></select></div></div><div class="actions"><button class="primary" onclick="addRegistryPlayer()">+ เพิ่มนักเตะ</button><input id="playerSearch" placeholder="ค้นหานักเตะ..." style="max-width:260px"></div><div id="registryTable" style="margin-top:14px"></div></div></section>
 <section id="module-discipline" class="platform-module hidden"><div class="panel"><div class="section-title"><h2>DISCIPLINARY RECORD</h2><span class="pill">ใบเหลือง 50 บาท · ใบแดง 150 บาท</span></div><div class="mutedbox">ค่าปรับคำนวณจากจำนวนใบที่บันทึก: ใบเหลือง 50 บาท/ใบ และใบแดง 150 บาท/ใบ สามารถเปลี่ยนสถานะการชำระได้</div><div id="disciplineTable" style="margin-top:14px"></div></div></section>
 <section id="module-finance" class="platform-module hidden"><div class="grid3" id="financeSummary"></div><div class="panel"><div class="section-title"><h2>ค่าสนามรายสัปดาห์</h2><span class="pill">750 บาท / ทีม / สัปดาห์</span></div><div class="grid3"><div class="field"><label>สัปดาห์</label><select id="financeWeek"></select></div><div class="field"><label>ทีม</label><select id="financeTeam"></select></div><div class="field"><label>สถานะการชำระ</label><select id="financeStatus"><option value="ยัง">ยังไม่จ่าย</option><option value="จ่ายแล้ว">จ่ายแล้ว</option><option value="Slip">ส่งสลิปแล้ว</option><option value="ไม่ทราบ">ไม่ทราบ</option></select></div></div><div class="actions"><button class="primary" onclick="updateFieldPayment()">บันทึกสถานะค่าสนาม</button></div><div id="fieldPaymentTable" style="margin-top:14px"></div></div><div class="panel"><h2>รายรับเครื่องดื่ม / ขนม</h2><div class="grid3"><div class="field"><label>สัปดาห์</label><select id="drinkWeek"></select></div><div class="field"><label>ทีม/ผู้ซื้อ</label><input id="drinkBuyer" placeholder="เช่น ทีมท่าแพ FC"></div><div class="field"><label>สินค้า</label><select id="drinkProduct"><option value="น้ำเปล่า">น้ำเปล่า · 5 บาท</option><option value="Sponsor/โคล่า/Oishi">Sponsor / โคล่า / Oishi · 17 บาท</option><option value="Sponsor เล็ก">Sponsor เล็ก · 15 บาท</option><option value="Sponsor Go ใหญ่">Sponsor Go ใหญ่ · 20 บาท</option><option value="น้ำมะพร้าว">น้ำมะพร้าว · 12 บาท</option></select></div><div class="field"><label>จำนวน</label><input id="drinkQty" type="number" min="1" step="1" value="1"></div><div class="field"><label>ราคาต่อหน่วย (แก้ไขได้)</label><input id="drinkPrice" type="number" min="0" step="1" value="5"></div><div class="field"><label>สถานะรับเงิน</label><select id="drinkPaid"><option value="จ่ายแล้ว">จ่ายแล้ว</option><option value="ค้างชำระ">ค้างชำระ</option></select></div></div><div class="actions"><button class="primary" onclick="addDrinkSale()">+ เพิ่มรายการขาย</button></div><div id="drinkTable" style="margin-top:14px"></div></div><div class="panel"><h2>บัญชีรายรับ-รายจ่ายอื่น</h2><div class="grid3"><div class="field"><label>รายการ</label><input id="ledgerLabel" placeholder="เช่น ค่ากรรมการ / ค่าของรางวัล"></div><div class="field"><label>ประเภท</label><select id="ledgerType"><option value="income">รายรับ</option><option value="expense">รายจ่าย</option></select></div><div class="field"><label>จำนวนเงิน (บาท)</label><input id="ledgerAmount" type="number" min="0" step="1" value="0"></div></div><div class="actions"><button class="primary" onclick="addLedgerEntry()">บันทึกรายการ</button></div><div id="ledgerTable" style="margin-top:14px"></div></div></section>
-<section id="module-weeklypoints" class="platform-module hidden"><div class="panel"><h2>WICTORz × SATIT GLORY WEEKLY POINTS</h2><p class="sub">ประเมินผู้เล่นรายสัปดาห์ · คะแนนสดและบันทึกในเครื่อง</p></div>
-<div class="tabs admin-only" id="weeklyTabs"><button class="tab active" data-tab="nominees">7 Nominee Slots</button><button class="tab" data-tab="normal">Normal Player (60)</button><button class="tab" data-tab="rules">Rules & Scoreboard</button></div>
-<section id="nominees" class="admin-only">
+<section id="module-weeklypoints" class="platform-module hidden"><div class="panel"><h2>WICTORz × SATIT GLORY WEEKLY POINTS</h2><p class="sub">ระบบคะแนนโดยวิคเตอร์ WICTORz's WEEKLY POINTS System - AI Analyst Data</p></div>
+<div class="tabs" id="weeklyTabs"><button class="tab active admin-only" data-tab="nominees">7 Nominee Slots</button><button class="tab admin-only" data-tab="normal">Normal Player (60)</button><button class="tab active" data-tab="rules">Rules &amp; Scoreboard</button></div>
+<section id="nominees">
 <div class="panel">
 <div class="section-title"><h2>Match & competition information</h2><span class="pill">Score is calculated live</span></div>
 <div class="grid">
@@ -167,21 +217,21 @@ body:not(.admin-mode) #module-stats select{pointer-events:none;opacity:.9}
 <div id="winnerSummary" class="mutedbox" style="margin-top:12px">เลือกผู้ชนะและรองชนะเพื่อเพิ่มโบนัสหลังคำนวณคะแนนผู้เล่น</div>
 </div>
 </section>
-<section id="normal" class="hidden admin-only">
+<section id="normal" class="hidden">
 <div class="panel"><div class="section-title"><h2>Normal Player list</h2><span class="pill">สูงสุด 60 รายชื่อ</span></div>
 <div class="mutedbox">กรอกผู้เล่นที่ไม่ติด 7 ช่อง Nominee โดยใช้รหัสสถิติ เช่น 1G, 1GF, 1A, 1BA, 1S, 1PS, 1Y, 1R สามารถกรอกหลายรายการคั่นด้วยช่องว่างหรือจุลภาค ระบบจะคำนวณคะแนนจากช่องแยกด้านล่างและรหัสสถิติที่รู้จัก</div>
 <div class="actions"><button class="primary" onclick="addNormal()">+ เพิ่มผู้เล่น</button><button onclick="clearNormal()">ล้างรายชื่อ Normal Player</button></div>
 <div id="normalList" style="margin-top:14px"></div></div>
 </section>
 <section id="rules" class="hidden">
-<div class="panel"><h2>กติกาคะแนนที่ระบบใช้</h2>
+<div class="panel"><h2>Rules &amp; Scoreboard · กติกาคะแนนที่ระบบใช้</h2>
 <div class="grid2">
-<div><h3>Appearance & Match result</h3><ul><li>ลงเล่น / Appearance: +3</li><li>ชนะปกติ: +1</li><li>ชนะผลต่าง 3 ประตู: โบนัสชนะ +2 แทน +1</li><li>ชนะผลต่าง 4 ประตู: โบนัส +2 สำหรับ Nominee; Normal Player ใช้ +4 เฉพาะเมื่อชนะผลต่างมากกว่า 4 ตามที่ระบุ</li><li>เสมอ: +0.5</li><li>ทีมด้อยกว่า: ชนะ +2.5 หรือเสมอ +1.5 แทนโบนัสผลปกติ</li><li>ทีมเสียเปรียบจำนวนผู้เล่น: ชนะ +2.5 หรือเสมอ +1.5 แทนโบนัสผลปกติ</li></ul></div>
-<div><h3>บริบทเหนือกว่า / ด้อยกว่า</h3><ul><li>ทีมเหนือกว่าและชนะ: -2.5 และ -0.75 ต่อประตูที่ผู้เล่นทำ, -0.33 ต่อแอสซิสต์ของผู้เล่น</li><li>ทีมด้อยกว่า: +1 ต่อประตู และ +0.75 ต่อแอสซิสต์ของผู้เล่น</li><li>โบนัสทีมและดีบัฟบริบทคำนวณแยกกันตามช่องที่เลือก</li><li>ถ้าไม่เลือกบริบท ให้ถือเป็นเกมปกติ</li></ul></div>
+<div><h3>Appearance & Match result</h3><ul><li>ลงเล่น / Appearance: +3</li><li>ชนะปกติ: +1</li><li>ชนะผลต่าง 3 ประตู: โบนัสชนะ +2 แทน +1</li><li>ชนะผลต่าง 4 ประตู: โบนัส +2 สำหรับ Nominee; Normal Player ใช้ +4 เฉพาะเมื่อชนะผลต่างมากกว่า 4 ตามที่ระบุ</li><li>เสมอ: +0.5</li><li>ทีมอันดับต่ำกว่า: ชนะ +2.5 หรือเสมอ +1.5 แทนโบนัสผลปกติ</li><li>ทีมเสียเปรียบจำนวนผู้เล่น: ชนะ +2.5 หรือเสมอ +1.5 แทนโบนัสผลปกติ</li></ul></div>
+<div><h3>บริบทเหนือกว่า / ด้อยกว่า</h3><ul><li>ทีมอันดับเหนือกว่าและชนะ: -2.5 และ -0.75 ต่อประตูที่ผู้เล่นทำ, -0.33 ต่อแอสซิสต์ของผู้เล่น</li><li>ทีมอันดับต่ำกว่า: +1 ต่อประตู และ +0.75 ต่อแอสซิสต์ของผู้เล่น</li><li>โบนัสทีมและดีบัฟบริบทคำนวณแยกกันตามช่องที่เลือก</li><li>ถ้าไม่เลือกบริบท ให้ถือเป็นเกมปกติ</li></ul></div>
 <div><h3>ประตู / แอสซิสต์</h3><ul><li>ประตู: กองหน้า +2.5, ริมเส้น +3, กองกลาง +3.25, กองหลัง +3.5, GK +4</li><li>ฟรีคิก: +0.75 ต่อประตูฟรีคิก (ในระบบจะคิดตามจำนวนที่กรอก)</li><li>ประตู/แอสซิสต์ช่วงทดเวลา: +0.5 ต่อรายการ</li><li>ประตู/แอสซิสต์สุดท้ายที่ทำให้ทีมเสมอหรือชนะ: +1</li><li>ถ้าเป็นทั้งทดเวลาและ decisive: โบนัสรวม +1.25 แทนการบวกซ้ำ</li><li>แอสซิสต์ปกติ +2.5; Gold assist +3.5 แทนแอสซิสต์ปกติ</li></ul></div>
 <div><h3>ความละเอียดคะแนน</h3><ul><li>คะแนนดิบคำนวณเต็มความละเอียดเพื่อไม่ทำข้อมูลหาย</li><li>Total Final ปัดเป็นขั้น 0.5 ที่ใกล้ที่สุด ณ ตอนสรุปเท่านั้น</li><li>โบนัส +0.75, -0.33 และคะแนนแปลงเรตติ้งอาจมีทศนิยมระหว่างทางได้ แต่จะไม่แสดงเป็น Total Final</li><li>ถ้าคะแนนเสมอกัน ระบบแสดงคะแนนเท่ากัน ไม่ใช้เกณฑ์ตัดสินแชมป์อัตโนมัติ</li></ul></div>
 </div>
-<div class="mutedbox">หมายเหตุเรื่องกติกาที่ต้องยืนยัน: (1) BIG Win ในคำอธิบายมีทั้ง “ผลต่าง 3 ประตู” และ “มากกว่า 4 ประตูขึ้นไป” จึงตั้งค่าให้ผลต่าง 3–4 = +2 สำหรับ Nominee และผลต่าง 5+ = +4 เฉพาะ Normal Player (2) โบนัสคลีนชีต: กองหลัง +2, ริมเส้น +1, กองกลาง +0.25; ตำแหน่งอื่น +0; อย่างไรก็ตามคะแนนนี้จะถูกรวมและปัด Total Final เป็น .0/.5 (3) คะแนนแปลงเรตติ้ง 4–10/10 มีบางค่าที่ขาดหรือไม่เป็นเส้นตรง จึงใช้จุดอ้างอิงที่ระบุแล้วประมาณค่าเฉพาะค่าที่ขาด</div>
+<div class="mutedbox"><b>คลีนชีต:</b> กองหลัง +2 · ริมเส้น +1 · กองกลาง +0.25 · กองหน้า +0<br><b>TOP 1:</b> ฟอร์มดีที่สุดในทีม โดดเด่น แต่ไม่ติดทีมยอดเยี่ยมประจำสัปดาห์ +6.5<br><b>TOP 2:</b> ฟอร์มดีที่สุดในทีม +5 · <b>TOP 3:</b> ฟอร์มดีพอใช้ได้ เด่นในทีม +3 · <b>A4:</b> ผู้เล่นทั่วไปที่ลงเล่น +1 · ผู้ติดทีมยอดเยี่ยมประจำสัปดาห์ได้ 4–10 คะแนน<br>ตำแหน่งริมเส้นหมายถึงแบ็ค วิงแบ็ค ตัวรุกริมเส้น หรือกองกลางริมเส้นทั้งฝั่งซ้ายและขวา.<br><br>หมายเหตุเรื่องกติกาที่ต้องยืนยัน: (1) BIG Win ในคำอธิบายมีทั้ง “ผลต่าง 3 ประตู” และ “มากกว่า 4 ประตูขึ้นไป” จึงตั้งค่าให้ผลต่าง 3–4 = +2 สำหรับ Nominee และผลต่าง 5+ = +4 เฉพาะ Normal Player (2) โบนัสคลีนชีต: กองหลัง +2, ริมเส้น +1, กองกลาง +0.25; ตำแหน่งอื่น +0; อย่างไรก็ตามคะแนนนี้จะถูกรวมและปัด Total Final เป็น .0/.5 (3) คะแนนแปลงเรตติ้ง 4–10/10 มีบางค่าที่ขาดหรือไม่เป็นเส้นตรง จึงใช้จุดอ้างอิงที่ระบุแล้วประมาณค่าเฉพาะค่าที่ขาด</div>
 </div>
 <div class="panel"><h2>Position-specific criteria</h2><div class="grid2">
 <div><h3>Defender</h3><p>ยืนตำแหน่ง +0.5 · เข้าปะทะ/ตัดบอล +0.5 · ชนะกลางอากาศ +0.5 · ประกบตัวดี +0.5 หรือประกบสุดยอด +1 (เลือกอย่างใดอย่างหนึ่ง) · ไม่มีข้อผิดพลาด +1.5 · เคลียร์บนเส้น +1 · หยุดหลุดเดี่ยว +1</p></div>
@@ -191,17 +241,7 @@ body:not(.admin-mode) #module-stats select{pointer-events:none;opacity:.9}
 </div></div>
 </section>
 </section>
-<section id="publicHub" class="panel">
-<h2>แจ้งรายงานแมตช์ / ติดต่อผู้จัด</h2>
-<div class="field"><label>ข้อความถึงผู้จัด</label><textarea id="publicReportText" placeholder="พิมพ์รายละเอียดรายงานแมตช์หรือข้อความติดต่อผู้จัด"></textarea></div><div class="actions"><button class="primary" onclick="submitPublicMessage('รายงานแมตช์/ติดต่อผู้จัด','publicReportText')">ส่งข้อความ</button></div>
-<div class="public-card"><h2>ขอสิทธิ์เลื่อนคู่การแข่งขัน</h2><p class="small">* ไม่สามารถเลื่อนวันได้ แต่เลื่อนเวลาให้ช้าหรือเร็วได้ เฉพาะคู่แรก–คู่สุดท้าย แต่ละทีมได้สิทธิ์ 2/2 ครั้ง</p>
-<div class="grid2 public-form-grid"><div class="field"><label>ชื่อทีม</label><input id="rescheduleTeam" placeholder="ระบุชื่อทีม"></div><div class="field"><label>เบอร์โทรติดต่อกลับ</label><input id="reschedulePhone" type="tel" inputmode="tel" placeholder="เบอร์โทรศัพท์"></div></div><div class="field" style="margin-top:10px"><label>รายละเอียดคู่ / เวลาที่ต้องการ</label><textarea id="rescheduleDetail" placeholder="ระบุคู่แข่งขันและเวลาเดิม/เวลาที่ต้องการ"></textarea></div><div class="actions"><button class="primary" onclick="submitReschedule()">ส่งคำขอ</button></div></div>
-<div class="public-card"><h2>ประเมินผู้ตัดสิน · Democracy VOTE</h2><p class="small">เลือกคะแนนให้ผู้ตัดสินทั้งสองคน โหวตได้หนึ่งครั้งต่อเบราว์เซอร์บนอุปกรณ์นี้</p><div id="refereeVoteForm"></div><div class="actions"><button class="primary" id="submitRefVotes" onclick="submitRefVotes()">ส่งคะแนนโหวต</button></div><div id="refereeResults"></div></div>
-<div class="public-card"><h2>แสดงความคิดเห็น · Democracy VOTE</h2><div class="field"><label>ข้อเสนอแนะ / สิ่งที่อยากให้ปรับปรุง</label><textarea id="democracyText" placeholder="เช่น ค่าสมัครแมตช์ เงินรางวัล หรือข้อเสนออื่น ๆ"></textarea></div><div class="actions"><button class="primary" onclick="submitPublicMessage('ข้อเสนอแนะ Democracy VOTE','democracyText')">ส่งความคิดเห็น</button></div>
-<div class="grid2 public-form-grid" style="margin-top:14px"><div class="field"><label>กล่องย่อยด้านซ้าย · แจ้งผู้จัด</label><textarea id="leftNotice" placeholder="แก้ไขผู้ทำประตู / ส่งรายชื่อ / แจ้งรายละเอียด"></textarea><button onclick="submitPublicMessage('แจ้งผู้จัด · กล่องซ้าย','leftNotice')">ส่งข้อความ</button></div><div class="field"><label>กล่องย่อยด้านขวา · แจ้งผู้จัด</label><textarea id="rightNotice" placeholder="แก้ไขผู้ทำประตู / ส่งรายชื่อ / แจ้งรายละเอียด"></textarea><button onclick="submitPublicMessage('แจ้งผู้จัด · กล่องขวา','rightNotice')">ส่งข้อความ</button></div></div></div>
-<div class="public-card admin-only"><h2>กล่องข้อความจาก Public View</h2><p class="small">ผู้ดูแลอ่านและลบข้อความได้เท่านั้น ไม่สามารถแก้ไขหรือโหวตแทนผู้ใช้</p><div id="adminMessageInbox"></div></div>
-</section>
-<div class="footer"><div style="letter-spacing:1px">____________________________________________</div><p><b>Sponsored by [MONER]</b> (สปอร์ตแอนด์ดีไซน์ มอบส่วนลด 15% ทั้งเสื้อหรือชุด สั่งทำเสื้อเริ่มต้นที่ 250 บาท) · <b>[PISANU Sport&Bar]</b> · <b>[ONANA ParteyBall League]</b> กลุ่มโอนาน่าพาเตะบอล สนใจเตะบอลสนามสาธิตโทร 093-3951128</p><p>Copyright © วิคเตอร์ · ติดต่อผู้จัดโทร 082-6924980</p><small>ข้อมูลระบบหลักของไฟล์นี้เก็บในเบราว์เซอร์ที่เปิดไฟล์ ไม่ได้ซิงก์ข้ามอุปกรณ์โดยอัตโนมัติ</small></div>
+
 </main>
 <script>
 const positions=[["GK","ผู้รักษาประตู"],["DEF","กองหลัง"],["WING","ริมเส้น"],["MID","กองกลาง"],["FWD","กองหน้า"]];
@@ -615,40 +655,110 @@ const sgOriginalRenderRegistry=renderRegistry;
 if(typeof sgOriginalRenderRegistry==='function')renderRegistry=function(){sgOriginalRenderRegistry();const table=document.querySelector('#registryTable table');if(!table)return;[...table.tBodies[0].rows].forEach((r,i)=>{const p=league.players[i];if(p&&!r.querySelector('.sg-id')){const td=document.createElement('td');td.className='sg-id';td.style.color='#8996aa';td.textContent=p.publicId||('ID-'+String(p.id).replace(/\D/g,'').slice(-6));r.insertBefore(td,r.firstChild);}});};
 document.addEventListener('DOMContentLoaded',()=>{sgAddLiveFields();});
 
-</script>
 
-<script>
-/* Public-facing controls. Static HTML cannot securely authenticate admins or aggregate votes across devices. */
-const SG_ADMIN_KEY='124578963';
-const SG_MESSAGES_KEY='sg_public_messages_v1';
-const SG_VOTES_KEY='sg_referee_vote_v1';
-const SG_VOTE_DATA='sg_referee_vote_data_v1';
-const SG_RATINGS=['1','2','2.5','3.5','4','4.5','5','5.5','6','6.5','7','7.5','8','8.5','9','9.5','10'];
-function sgGet(k,fb){try{return JSON.parse(localStorage.getItem(k)||'null')??fb}catch(e){return fb}}
-function sgSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-function sgAdmin(on){
- document.body.classList.toggle('admin-mode',on);
- document.getElementById('accessStatus').textContent=on?'ADMIN MODE':'PUBLIC VIEW';
- document.getElementById('adminKeyInput').classList.toggle('hidden',on);
- document.getElementById('adminLoginBtn').classList.toggle('hidden',on);
- document.getElementById('adminLogoutBtn').classList.toggle('hidden',!on);
- document.querySelectorAll('.admin-only').forEach(el=>{if(on){el.classList.remove('hidden')}else if(el.id==='rules'){el.classList.remove('hidden')}else el.classList.add('hidden')});
- if(!on){document.getElementById('module-weeklypoints').classList.remove('hidden');document.getElementById('nominees').classList.add('hidden');document.getElementById('normal').classList.add('hidden');document.getElementById('rules').classList.remove('hidden');document.getElementById('weeklyTabs').classList.add('hidden');document.querySelectorAll('#platformTabs [data-module="players"]').forEach(x=>x.classList.add('hidden'));}
- else {document.querySelectorAll('#platformTabs [data-module="players"]').forEach(x=>x.classList.remove('hidden'));document.getElementById('weeklyTabs').classList.remove('hidden');}
- sgRenderInbox();sgRenderVoteResults();
+// Public View / Admin UI enhancements. Static HTML is client-side; the PIN is a convenience gate, not server-grade authentication.
+const SG_ADMIN_PIN = '2026'; // Change this PIN before distributing the file.
+const SG_LOGOS = {
+ T1:'https://i.postimg.cc/DW9SZx1y/logo-th-aphae.png',
+ T2:'https://i.postimg.cc/qtPNR1y9/k-dek-d-ked-e.png',
+ T3:'https://i.postimg.cc/5HhX0s8x/b-ng.png',
+ T4:'https://i.postimg.cc/KktRgtD6/logo-buddy.png',
+ T5:'https://i.postimg.cc/t1KsTBWD/hd-hkd-hkd-hkd.png',
+ T6:'https://i.postimg.cc/gwCxJg8Q/d-hkd-hkd-hkd.png',
+ T7:'https://i.postimg.cc/McCnT9V9/hkd-hkd-hkd-hkd-hd-hkd-hkd.png',
+ T8:'https://i.postimg.cc/sBkMXT5j/loko-ch-angn-xy.png',
+ T9:'https://i.postimg.cc/CZ3R1ck3/hkd-hkd-hk.png',
+ T10:'https://i.postimg.cc/rdBDmfxJ/hkd-hkd-hkd-hkd-hkdff-fkdf-hkf-hk.png',
+ T11:'https://i.postimg.cc/B8rj6mHC/hkd-hkd-hk-x-haek-haek-haek-haehh.png',
+ T12:'https://i.postimg.cc/sBkMXT5C/f-r.png'
+};
+const SG_STORE_KEY='satitGloryPublicCommunityV1';
+function sgGetCommunity(){try{return JSON.parse(localStorage.getItem(SG_STORE_KEY)||'{"messages":[],"votes":[]}')}catch(e){return {messages:[],votes:[]}}}
+function sgSetCommunity(d){localStorage.setItem(SG_STORE_KEY,JSON.stringify(d))}
+function sgSetMode(admin){
+ document.body.classList.toggle('admin-mode',admin);
+ document.getElementById('adminToggle').classList.toggle('hidden',admin);
+ document.getElementById('publicToggle').classList.toggle('hidden',!admin);
+ document.getElementById('viewModeLabel').textContent=admin?'ADMIN VIEW':'PUBLIC VIEW';
+ if(!admin && document.getElementById('module-players') && !document.getElementById('module-players').classList.contains('hidden')) switchModule('dashboard');
+ if(!admin && document.getElementById('module-stats') && !document.getElementById('module-stats').classList.contains('hidden')) switchModule('dashboard');
+ if(!admin){document.querySelectorAll('#weeklyTabs [data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab==='rules'));document.getElementById('nominees').classList.add('hidden');document.getElementById('normal').classList.add('hidden');document.getElementById('rules').classList.remove('hidden')}
+ else {document.querySelectorAll('#weeklyTabs [data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab==='nominees'));document.getElementById('nominees').classList.remove('hidden');document.getElementById('normal').classList.add('hidden');document.getElementById('rules').classList.add('hidden')}
+ sgRenderPublic();sgRenderInbox();
 }
-document.getElementById('adminLoginBtn').addEventListener('click',()=>{if(document.getElementById('adminKeyInput').value===SG_ADMIN_KEY){sgAdmin(true);document.getElementById('adminKeyInput').value=''}else alert('Keypass ไม่ถูกต้อง')});
-document.getElementById('adminKeyInput').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('adminLoginBtn').click()});
-document.getElementById('adminLogoutBtn').addEventListener('click',()=>sgAdmin(false));
-function submitPublicMessage(type,id){const el=document.getElementById(id),message=(el.value||'').trim();if(!message){alert('กรุณากรอกข้อความก่อนส่ง');return}const items=sgGet(SG_MESSAGES_KEY,[]);items.unshift({id:Date.now()+Math.random(),type,message,created:new Date().toLocaleString('th-TH'),team:'',phone:''});sgSet(SG_MESSAGES_KEY,items);el.value='';alert('ส่งข้อความแล้ว');sgRenderInbox()}
-function submitReschedule(){const team=document.getElementById('rescheduleTeam').value.trim(),phone=document.getElementById('reschedulePhone').value.trim(),detail=document.getElementById('rescheduleDetail').value.trim();if(!team||!phone||!detail){alert('กรุณากรอกชื่อทีม เบอร์โทร และรายละเอียดให้ครบ');return}const a=sgGet(SG_MESSAGES_KEY,[]);a.unshift({id:Date.now()+Math.random(),type:'ขอสิทธิ์เลื่อนคู่การแข่งขัน',message:detail,team,phone,created:new Date().toLocaleString('th-TH')});sgSet(SG_MESSAGES_KEY,a);['rescheduleTeam','reschedulePhone','rescheduleDetail'].forEach(id=>document.getElementById(id).value='');alert('ส่งคำขอแล้ว');sgRenderInbox()}
-function sgBuildVotes(){const root=document.getElementById('refereeVoteForm');root.innerHTML=[['ref1','ผู้ตัดสินคนแรก (คนตัวเล็กกว่า อยู่มุมใกล้)'],['ref2','ผู้ตัดสินคนที่สอง (คนตัวสูงกว่า อยู่มุมไกล)']].map(([name,title])=>`<div class="section"><h3>${title}</h3><div class="vote-options">${SG_RATINGS.map(v=>`<label><input type="radio" name="${name}" value="${v}"> ${v}/10</label>`).join('')}</div></div>`).join('');if(localStorage.getItem(SG_VOTES_KEY)){root.innerHTML='<p class="mutedbox">อุปกรณ์นี้ส่งคะแนนแล้ว ขอบคุณที่ร่วมโหวต</p>';document.getElementById('submitRefVotes').classList.add('hidden')}}
-function submitRefVotes(){if(localStorage.getItem(SG_VOTES_KEY)){alert('อุปกรณ์นี้โหวตไปแล้ว');return}const a=document.querySelector('input[name="ref1"]:checked'),b=document.querySelector('input[name="ref2"]:checked');if(!a||!b){alert('กรุณาให้คะแนนผู้ตัดสินทั้งสองคน');return}const d=sgGet(SG_VOTE_DATA,{ref1:[],ref2:[]});d.ref1.push(Number(a.value));d.ref2.push(Number(b.value));sgSet(SG_VOTE_DATA,d);localStorage.setItem(SG_VOTES_KEY,'1');sgBuildVotes();sgRenderVoteResults()}
-function sgRenderVoteResults(){const d=sgGet(SG_VOTE_DATA,{ref1:[],ref2:[]});const avg=a=>a.length?(a.reduce((x,y)=>x+y,0)/a.length).toFixed(2):'—';const bars=a=>{if(!a.length)return '<p class="small">ยังไม่มีคะแนนโหวตในข้อมูลของเบราว์เซอร์นี้</p>';return SG_RATINGS.map(v=>{const n=a.filter(x=>x===Number(v)).length;if(!n)return '';return `<div style="display:grid;grid-template-columns:48px 1fr 28px;gap:8px;align-items:center;margin:6px 0"><span>${v}/10</span><div style="height:10px;background:#26354b;border-radius:9px;overflow:hidden"><div style="height:100%;width:${n/Math.max(...SG_RATINGS.map(r=>a.filter(x=>x===Number(r)).length))*100}%;background:var(--gold)"></div></div><b>${n}</b></div>`}).join('')};document.getElementById('refereeResults').innerHTML=`<div class="section"><h3>ผลคะแนนเฉลี่ย · จำนวนโหวต ${d.ref1.length}</h3><div class="grid2"><div class="public-card"><b>ผู้ตัดสินคนแรก</b><h2>${avg(d.ref1)} / 10</h2>${bars(d.ref1)}</div><div class="public-card"><b>ผู้ตัดสินคนที่สอง</b><h2>${avg(d.ref2)} / 10</h2>${bars(d.ref2)}</div></div></div>`}
-function sgRenderInbox(){const root=document.getElementById('adminMessageInbox');if(!root)return;const a=sgGet(SG_MESSAGES_KEY,[]);root.innerHTML=a.length?a.map(x=>`<div class="message-item"><div class="section-title"><b>${sgEscape(x.type)}</b><button onclick="sgDeleteMessage('${x.id}')">ลบ</button></div><div class="small">${sgEscape(x.created||'')}${x.team?' · ทีม: '+sgEscape(x.team):''}${x.phone?' · โทร: '+sgEscape(x.phone):''}</div><p>${sgEscape(x.message)}</p></div>`).join(''):'<div class="mutedbox">ยังไม่มีข้อความ</div>'}
-function sgEscape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function sgDeleteMessage(id){if(!document.body.classList.contains('admin-mode'))return;if(confirm('ลบข้อความนี้?')){sgSet(SG_MESSAGES_KEY,sgGet(SG_MESSAGES_KEY,[]).filter(x=>String(x.id)!==String(id)));sgRenderInbox()}}
-document.addEventListener('DOMContentLoaded',()=>{sgBuildVotes();sgRenderVoteResults();sgAdmin(false)});
-</script>
+document.getElementById('adminToggle').addEventListener('click',()=>{const pin=prompt('กรอกรหัส ADMIN');if(pin===SG_ADMIN_PIN)sgSetMode(true);else if(pin!==null)alert('รหัสไม่ถูกต้อง')});
+document.getElementById('publicToggle').addEventListener('click',()=>sgSetMode(false));
+function sgTeamLogo(id){return SG_LOGOS[id]||''}
+function sgTeamLabel(id){const logo=sgTeamLogo(id);return `<div class="team-label">${logo?`<img src="${logo}" alt="">`:''}${esc(teamName(id))}</div>`}
+function sgMatchCard(f){
+ const has=f.homeGoals!==''&&f.awayGoals!=='';
+ let hs=has?Number(f.homeGoals):null,as=has?Number(f.awayGoals):null;
+ let hc=!has?'level':hs>as?'ahead':hs<as?'behind':'level',ac=!has?'level':as>hs?'ahead':as<hs?'behind':'level';
+ return `<article class="public-match"><div class="match-meta">WEEK ${String(f.week).padStart(2,'0')} · ${f.date||'วันอาทิตย์'} · ${f.live?'<span style="color:#ff858f">● LIVE</span>':has?'จบการแข่งขัน':'18:34 น.'}</div><div class="match-teams">${sgTeamLabel(f.home)}<div><span class="score-num ${hc}">${has?hs:'–'}</span><div style="font-size:10px;color:#94a3b8;margin:4px 0">VS</div><span class="score-num ${ac}">${has?as:'–'}</span></div>${sgTeamLabel(f.away)}</div>${f.minute?`<div class="match-meta">นาที ${esc(f.minute)}</div>`:''}${f.eventsText?`<div class="match-events">${esc(f.eventsText)}</div>`:''}</article>`
+}
+function sgNextSunday(){
+ const now=new Date(),d=new Date(now);d.setHours(18,34,0,0);
+ const days=(7-now.getDay())%7;
+ d.setDate(now.getDate()+days);
+ if(d<=now)d.setDate(d.getDate()+7);
+ return d;
+}
+function sgRenderPublic(){
+ const fixtures=(league.fixtures||[]).slice();
+ const upcoming=fixtures.filter(f=>f.homeGoals===''||f.awayGoals==='').sort((a,b)=>a.week-b.week);
+ const nextWeek=upcoming.length?Math.min(...upcoming.map(f=>f.week)):11;
+ const upcomingWeek=fixtures.filter(f=>f.week===nextWeek);
+ const prevWeek=Math.max(0,nextWeek-1);
+ const past=fixtures.filter(f=>f.week===prevWeek&&f.homeGoals!==''&&f.awayGoals!=='');
+ document.getElementById('sgUpcoming').innerHTML=upcomingWeek.length?upcomingWeek.map(sgMatchCard).join(''):'<div class="mutedbox">ยังไม่มีโปรแกรมที่กำลังจะมาถึง</div>';
+ document.getElementById('sgPast').innerHTML=past.length?past.map(sgMatchCard).join(''):'<div class="mutedbox">ผลการแข่งขันสัปดาห์ที่ผ่านมา ยังไม่มีข้อมูลครบถ้วน</div>';
+ const scorerMap={};(league.stats||[]).forEach(x=>{if(Number(x.goals)>0){const k=x.name+'|'+x.team;scorerMap[k]??={name:x.name,team:x.team,g:0};scorerMap[k].g+=Number(x.goals)}});
+ const scorers=Object.values(scorerMap).sort((a,b)=>b.g-a.g||a.name.localeCompare(b.name,'th')).slice(0,20);
+ document.getElementById('sgPublicScorers').innerHTML=scorers.length?scorers.map((x,i)=>`<div class="sg-public-scorer"><span>${i+1}. ${esc(x.name)} <small>· ${esc(teamName(x.team))}</small></span><b>${x.g} G</b></div>`).join(''):'<div class="mutedbox">ยังไม่มีข้อมูลผู้ทำประตู</div>';
+ const payRows=(league.teams||[]).map(t=>`<div class="sg-payment-row"><b>${esc(teamName(t.id))}</b><div class="sg-payment-grid">${Array.from({length:11},(_,i)=>{const p=league.payments[paymentKey(i+1,t.id)]||{status:'ไม่ทราบ'};const st=p.status==='จ่ายแล้ว'?'paid':p.status==='ยัง'||p.status==='ค้างชำระ'?'unpaid':'unknown';return `<div class="sg-payment-cell ${st}">W${i+1}<br>${st==='paid'?'จ่ายแล้ว':st==='unpaid'?'ยังไม่จ่าย':'ไม่ทราบ'}</div>`}).join('')}</div></div>`).join('');
+ document.getElementById('sgPaymentMatrix').innerHTML=payRows;
+ sgRenderVoteResults();sgRenderInbox();
+}
+function sgRenderVoteChoices(id,name){
+ const opts=[1,2,2.5,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10];
+ document.getElementById(id).innerHTML=opts.map(v=>`<label><input type="radio" name="${name}" value="${v}" required>${v}/10</label>`).join('');
+}
+sgRenderVoteChoices('sgVoteOne','ref1');sgRenderVoteChoices('sgVoteTwo','ref2');
+function sgRenderVoteResults(){
+ const d=sgGetCommunity(),votes=d.votes||[];
+ const result=(key,label)=>{const vals=votes.map(v=>Number(v[key])).filter(Number.isFinite);const avg=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;const counts={};vals.forEach(v=>counts[v]=(counts[v]||0)+1);const max=Math.max(1,...Object.values(counts));return `<div style="margin:9px 0"><b>${label}: ${vals.length?avg.toFixed(2)+'/10':'ยังไม่มีคะแนน'} </b><span class="small">(${vals.length} โหวต)</span>${Object.keys(counts).sort((a,b)=>Number(a)-Number(b)).map(v=>`<div class="sg-vote-bar"><span>${v}/10 · ${counts[v]} โหวต</span><div class="bar"><i style="width:${counts[v]/max*100}%"></i></div></div>`).join('')}</div>`};
+ const already=localStorage.getItem('sg-vote-device-v1');
+ document.getElementById('sgVoteResults').innerHTML=result('ref1','ผู้ตัดสินคนแรก')+result('ref2','ผู้ตัดสินคนที่สอง')+(already?'<div class="mutedbox">อุปกรณ์/เบราว์เซอร์นี้ส่งคะแนนแล้ว</div>':'');
+ document.querySelectorAll('#sgRefVoteForm input').forEach(el=>el.disabled=!!already);
+ document.querySelector('#sgRefVoteForm button').disabled=!!already;
+}
+document.getElementById('sgRefVoteForm').addEventListener('submit',e=>{
+ e.preventDefault();if(localStorage.getItem('sg-vote-device-v1'))return alert('อุปกรณ์/เบราว์เซอร์นี้โหวตไปแล้ว');
+ const a=document.querySelector('input[name="ref1"]:checked')?.value,b=document.querySelector('input[name="ref2"]:checked')?.value;if(!a||!b)return;
+ const d=sgGetCommunity();d.votes.push({ref1:Number(a),ref2:Number(b),at:new Date().toISOString()});sgSetCommunity(d);localStorage.setItem('sg-vote-device-v1','1');sgRenderVoteResults();
+});
+function sgAddMessage(type,form){
+ const d=sgGetCommunity(),fd=new FormData(form),obj={id:'MSG-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),type,at:new Date().toISOString()};
+ fd.forEach((v,k)=>obj[k]=String(v).trim());d.messages.unshift(obj);sgSetCommunity(d);form.reset();alert('ส่งข้อความแล้ว');sgRenderInbox();
+}
+document.getElementById('sgRescheduleForm').addEventListener('submit',e=>{e.preventDefault();sgAddMessage('ขอเลื่อนเวลาแข่งขัน',e.currentTarget)});
+document.getElementById('sgReportForm').addEventListener('submit',e=>{e.preventDefault();sgAddMessage('แจ้งผู้จัด / รายงานแมตช์',e.currentTarget)});
+document.getElementById('sgSuggestionForm').addEventListener('submit',e=>{e.preventDefault();sgAddMessage('ความคิดเห็น / เรียกร้อง',e.currentTarget)});
+function sgRenderInbox(){
+ const el=document.getElementById('sgInbox');if(!el)return;const d=sgGetCommunity();
+ if(!d.messages.length){el.innerHTML='<div class="mutedbox">ยังไม่มีข้อความจากผู้ชม</div>';return}
+ el.innerHTML=d.messages.map(m=>`<article class="sg-message"><div class="section-title"><b>${esc(m.type)}</b><button class="admin-only" onclick="sgDeleteMessage('${m.id}')">ลบข้อความ</button></div><small>${esc(m.at||'')} · ${esc(m.team||m.topic||'')}</small><p>${esc(m.detail||'')}</p>${m.phone?`<div>โทรกลับ: ${esc(m.phone)}</div>`:''}${m.contact?`<div>ผู้ติดต่อ: ${esc(m.contact)}</div>`:''}${m.match?`<div>คู่แข่งขัน: ${esc(m.match)}</div>`:''}${m.topic?`<div>หัวข้อ: ${esc(m.topic)}</div>`:''}</article>`).join('');
+}
+function sgDeleteMessage(id){if(!document.body.classList.contains('admin-mode'))return;const d=sgGetCommunity();d.messages=d.messages.filter(m=>m.id!==id);sgSetCommunity(d);sgRenderInbox()}
+function sgUpdateCountdown(){
+ const el=document.getElementById('sgCountdown');if(!el)return;const target=sgNextSunday(),ms=target-new Date();if(ms<=0){el.textContent='กำลังแข่งขัน';return}
+ const days=Math.floor(ms/86400000),hours=Math.floor(ms%86400000/3600000),mins=Math.floor(ms%3600000/60000),secs=Math.floor(ms%60000/1000);
+ el.textContent=`เริ่มแข่งใน ${days} วัน ${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')} · ${target.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'})} 18:34 น.`;
+}
+const sgPrevRenderPlatform=renderPlatform;
+renderPlatform=function(){sgPrevRenderPlatform();sgRenderPublic();};
+document.addEventListener('DOMContentLoaded',()=>{sgSetMode(false);sgUpdateCountdown();setInterval(sgUpdateCountdown,1000);});
+setTimeout(()=>{sgSetMode(false);sgRenderPublic();sgUpdateCountdown()},0);
 
+</script>
 </body></html>

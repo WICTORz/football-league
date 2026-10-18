@@ -1,5 +1,5 @@
-[index.html](https://github.com/user-attachments/files/33629180/index.html)
-<!doctype html>
+[index.html](https://github.com/user-attachments/files/33629191/index.html)
+
 <html lang="th">
 <head>
 <meta charset="utf-8">

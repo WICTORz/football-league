@@ -1,4 +1,4 @@
-[index.html](https://github.com/user-attachments/files/33629200/index.html)
+[Uploading SATIT_GLORY_PLATFORM_ADMIN (2).html…]()
 <!doctype html>
 <html lang="th">
 <head>
